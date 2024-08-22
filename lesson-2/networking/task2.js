@@ -1,4 +1,5 @@
 const https = require("https");
+
 const fs = require("fs");
 
 const options = {
@@ -7,11 +8,11 @@ const options = {
 };
 
 const server = https.createServer(options, (req, res) => {
-  res.writeHead(200, { "Content-type": "text/plain" });
-  res.write("Hello, secure world!");
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.write("Secure https!");
   res.end();
 });
 
 server.listen(3000, () => {
-  console.log("server listening on port 3000");
+  console.log("Listening on port 3000!");
 });

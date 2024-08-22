@@ -1,19 +1,20 @@
-// import the event module
-
 const Eventemmiter = require("events");
 
-// create a myEmmiter class that extends Eventemmiter
-class MyEmmiter extends Eventemmiter {}
+class Myemmiter extends Eventemmiter {}
 
-// create an instance of the MyEmmiter class
-const myEmmiter = new MyEmmiter();
+const myEmmiter = new Myemmiter();
 
-myEmmiter.on("event", () => {
-  setImmediate(() => {
-    console.log("Handling events asynchronously");
-  });
-});
+function greet(name) {
+  console.log(`hello ${name}`);
+}
 
-myEmmiter.emit("event");
+function temperature(type) {
+  console.log(`the temperature is ${type} `);
+}
 
-console.log("test code");
+myEmmiter.on("greet", greet);
+
+myEmmiter.emit("greet", "swag");
+myEmmiter.on("greet", temperature);
+
+myEmmiter.emit("greet", "hot");

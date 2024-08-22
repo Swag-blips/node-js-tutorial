@@ -7,3 +7,6 @@ const writeableStreams = fs.createWriteStream("pipe.txt");
 
 readableStream.pipe(writeableStreams)
 
+writeableStreams.on('finish', () => {
+    console.log("data finished piping")
+})

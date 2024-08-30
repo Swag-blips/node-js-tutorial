@@ -1,11 +1,19 @@
 const fs = require("fs");
 
-const readStream = fs.createReadStream("example.txt", { encoding: "utf-8" }); // garbage text
-const writeStream = fs.createWriteStream("output.txt");
+const createWriteableStreams = fs.createWriteStream("output.txt");
 
-// copying a file in nodeJs
-readStream.pipe(writeStream);
+createWriteableStreams.write("Yhis is the first line.\n");
+createWriteableStreams.write("Yhis is the second line\n");
+createWriteableStreams.write("Yhis is the third line\n");
+createWriteableStreams.write("Yhis is the first line\n");
+createWriteableStreams.end("This is the last line\n");
 
-writeStream.on("finish", () => {
-  console.log("the copying operation is done");
-});
+function finishEventHandler() {
+  console.log("All data has been written");
+}
+function errorEventHandler(err) {
+  console.log("error writing to file", err);
+}
+
+createWriteableStreams.on("finish", finishEventHandler);
+createWriteableStreams.on("error", errorEventHandler);

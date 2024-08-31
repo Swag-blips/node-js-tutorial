@@ -10,6 +10,7 @@ const server = http.createServer((req, res) => {
     req.on("data", (chunk) => {
       body += chunk.toString();
     });
+    
     req.on("end", () => {
       res.writeHead(200, { "Content-type": "text/plain" });
       res.write(`recieved a post request with ${body}`);
